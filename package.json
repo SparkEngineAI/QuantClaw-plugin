@@ -1,0 +1,59 @@
+{
+  "name": "@sparkengineai/quantclaw",
+  "version": "2026.4.10",
+  "description": "Task-type based quantization routing plugin for OpenClaw that routes requests across 4bit, 8bit, and 16bit targets to balance cost and accuracy.",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "src/",
+    "prompts/",
+    "config.example.json",
+    "openclaw.plugin.json",
+    "README.md",
+    "README_zh.md",
+    "figs/",
+    "assets/"
+  ],
+  "keywords": [
+    "openclaw",
+    "router",
+    "quantization",
+    "cost-optimization",
+    "quantclaw"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48",
+    "synckit": "^0.11.12",
+    "tsx": "^4.21.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "build": {
+      "openclawVersion": ">=2026.3.22"
+    },
+    "compat": {
+      "pluginApi": ">=2026.3.22"
+    }
+  },
+  "devDependencies": {
+    "vitest": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparkengineai/quantclaw"
+  },
+  "homepage": "https://github.com/sparkengineai/quantclaw#readme",
+  "bugs": {
+    "url": "https://github.com/sparkengineai/quantclaw/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

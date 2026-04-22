@@ -1,0 +1,514 @@
+{
+  "quant": {
+    "enabled": true,
+    "detectors": [
+
+      "ruleDetector",
+      "loadModelDetector"
+
+    ],
+    "judge": {
+      "endpoint": "http://127.0.0.1:8000",
+      "model": "glm-5-fp8",
+      "providerType": "openai-compatible",
+      "apiKey": "",
+      "customModule": "",
+      "cacheTtlMs": 300000
+    },
+    "taskTypes": [
+      {
+        "id": "procurement",
+        "precision": "16bit",
+        "description": "vendor evaluation, procurement comparison, supplier scoring, budget-aware purchasing analysis",
+        "keywords": [
+          "procurement",
+          "vendor evaluation",
+          "supplier",
+          "采购",
+          "供应商",
+          "比价",
+          "预算",
+          "采购建议"
+        ],
+        "patterns": [
+          "vendor evaluation",
+          "supplier evaluation",
+          "供应商评估"
+        ]
+      },
+      {
+        "id": "rewriting",
+        "precision": "16bit",
+        "description": "rewrite or humanize existing text while preserving meaning and improving tone or fluency",
+        "keywords": [
+          "rewrite",
+          "rewriting",
+          "humanize",
+          "polish",
+          "改写",
+          "润色",
+          "更自然",
+          "换个说法"
+        ],
+        "patterns": [
+          "rewrite the attached blog post",
+          "sounds more natural and human-written",
+          "human-written while\\s+keeping the same ideas"
+        ]
+      },
+      {
+        "id": "data_analysis",
+        "precision": "4bit",
+        "description": "structured numerical analysis, KPI calculations, ROI, CAGR, trends, tables, charts, spreadsheet-style reasoning",
+        "keywords": [
+          "ROI",
+          "CAGR",
+          "同比",
+          "环比",
+          "trend",
+          "analysis",
+          "table",
+          "chart",
+          "spreadsheet",
+          "数据分析"
+        ]
+      },
+      {
+        "id": "comprehension",
+        "precision": "4bit",
+        "description": "explain, summarize, compare, or answer questions about concepts, documents, methods, and domain knowledge",
+        "keywords": [
+          "explain",
+          "summary",
+          "summarize",
+          "compare",
+          "how does",
+          "what is",
+          "请教",
+          "帮我理解",
+          "怎么理解"
+        ]
+      },
+      {
+        "id": "coding",
+        "precision": "16bit",
+        "description": "code review, bug analysis, implementation, scripts, debugging, kernels, async behavior, web development",
+        "keywords": [
+          "code",
+          "coding",
+          "script",
+          "debug",
+          "bug",
+          "kernel",
+          "implementation",
+          "JavaScript",
+          "Python",
+          "CUDA",
+          "编程",
+          "代码"
+        ]
+      },
+      {
+        "id": "multimodal",
+        "precision": "4bit",
+        "description": "image, video, document vision, OCR, visual extraction, media understanding, multimodal QA and generation",
+        "keywords": [
+          "image",
+          "video",
+          "OCR",
+          "visual",
+          "screenshot",
+          "frame",
+          "图片",
+          "视频",
+          "识别",
+          "截图",
+          "多模态"
+        ],
+        "patterns": [
+          "attached image",
+          "图片路径是",
+          "use the attached image"
+        ]
+      },
+      {
+        "id": "finance",
+        "precision": "4bit",
+        "description": "financial metrics, valuation, earnings, margins, CFO, merger terms, mortgage, tax, reimbursement, investment analysis",
+        "keywords": [
+          "finance",
+          "valuation",
+          "DCF",
+          "gross margin",
+          "CFO",
+          "revenue",
+          "mortgage",
+          "tax",
+          "报销",
+          "财务",
+          "估值",
+          "利率"
+        ]
+      },
+      {
+        "id": "research",
+        "precision": "4bit",
+        "description": "open-ended research, literature search, market research, conference papers, external info gathering and synthesis",
+        "keywords": [
+          "research",
+          "market research",
+          "paper",
+          "conference",
+          "co-authored",
+          "literature",
+          "调研",
+          "研究",
+          "资料",
+          "市场研究"
+        ]
+      },
+      {
+        "id": "content",
+        "precision": "4bit",
+        "description": "newsletter curation, content drafting, article selection, report copy and publish-ready writing",
+        "keywords": [
+          "newsletter",
+          "content",
+          "draft",
+          "article",
+          "周报",
+          "内容",
+          "撰写",
+          "整理成文"
+        ],
+        "patterns": [
+          "publish a tech newsletter",
+          "tech newsletter"
+        ]
+      },
+      {
+        "id": "knowledge",
+        "precision": "4bit",
+        "description": "knowledge base lookup, retrieval from internal docs, finding documented fixes or policies",
+        "keywords": [
+          "knowledge base",
+          "KB",
+          "policy",
+          "documented fix",
+          "知识库",
+          "查知识库",
+          "内部文档",
+          "流程说明"
+        ]
+      },
+      {
+        "id": "memory",
+        "precision": "16bit",
+        "description": "memory recall, second-brain style retrieval, durable notes and multi-session remembrance",
+        "keywords": [
+          "memory",
+          "remember",
+          "recall",
+          "second brain",
+          "记住",
+          "回忆",
+          "长期记忆"
+        ]
+      },
+      {
+        "id": "organization",
+        "precision": "16bit",
+        "description": "categorize, organize, and structure inboxes, projects, tasks, or reports into ordered groups",
+        "keywords": [
+          "organize",
+          "categorize",
+          "分类整理",
+          "归类",
+          "整理结构",
+          "triage report"
+        ]
+      },
+      {
+        "id": "office_qa",
+        "precision": "4bit",
+        "description": "OCR-heavy office document question answering over treasury bulletins, scanned PDFs, and exact numeric extraction",
+        "keywords": [
+          "Treasury Bulletin",
+          "OCR",
+          "scanned PDF",
+          "exact numerical answer",
+          "officeqa",
+          "财政公报",
+          "扫描件",
+          "精确数值"
+        ],
+        "patterns": [
+          "scanned\\s+u\\.?s\\.?\\s+treasury\\s+bulletin[\\s\\S]{0,400}<FINAL_ANSWER>",
+          "treasury_bulletin_[0-9_]+\\.pdf[\\s\\S]{0,300}<FINAL_ANSWER>",
+          "scanned\\s+u\\.?s\\.?\\s+treasury\\s+bulletin",
+          "treasury_bulletin_[0-9_]+\\.pdf"
+        ]
+      },
+      {
+        "id": "communication",
+        "precision": "4bit",
+        "description": "email triage, contact lookup, reply drafting, customer follow-up, notification messages and professional communication",
+        "keywords": [
+          "email",
+          "reply",
+          "draft",
+          "contact",
+          "follow-up",
+          "通知",
+          "邮件",
+          "收件箱",
+          "联系人",
+          "跟进"
+        ]
+      },
+      {
+        "id": "productivity",
+        "precision": "16bit",
+        "description": "calendar scheduling, to-do cleanup, meeting notes, action items, event coordination, personal productivity tasks",
+        "keywords": [
+          "calendar",
+          "schedule",
+          "meeting",
+          "todo",
+          "action items",
+          "日程",
+          "安排会议",
+          "待办",
+          "会议纪要"
+        ],
+        "patterns": [
+          "(?=.*(?:schedule|安排|约))(?=.*(?:meeting|sync|会议))(?=.*(?:free slot|都有空|空的时间|calendar|日历)).*",
+          "(?=.*(?:to-do|todo|待办))(?=.*(?:merge duplicates|重复的合并|flag overdue|过期的标记)).*",
+          "(?=.*(?:weekly meeting|周会|meeting key points|要点整理))(?=.*(?:send to attendees|发给参会的人)).*"
+        ]
+      },
+      {
+        "id": "ops",
+        "precision": "16bit",
+        "description": "system operations, incidents, health checks, scheduled jobs, helpdesk correlation, integration status, diagnostics and audits",
+        "keywords": [
+          "incident",
+          "postmortem",
+          "scheduled job",
+          "health check",
+          "ops",
+          "工单",
+          "定时任务",
+          "故障",
+          "巡检",
+          "对账",
+          "SLA"
+        ],
+        "patterns": [
+          "(?=.*(?:scheduled jobs?|定时任务|自动化任务))(?=.*(?:tickets?|工单|helpdesk)).*",
+          "(?=.*(?:api|integration|集成))(?=.*(?:scheduled jobs?|定时任务|health check|巡检|system health)).*",
+          "(?=.*(?:reconciliation|对账))(?=.*(?:finance system|财务系统|payment|invoice|发票))(?=.*(?:crm|inventory|库存)).*",
+          "(?=.*(?:incident|postmortem|故障|事故复盘))(?=.*(?:tickets?|工单|timeline|时间线|scheduled jobs?|定时任务|integration|集成)).*",
+          "(?=.*(?:knowledge base|知识库))(?=.*(?:tickets?|工单|scheduled jobs?|定时任务|api|integration|巡检|health report|健康报告)).*"
+        ]
+      },
+      {
+        "id": "terminal",
+        "precision": "16bit",
+        "description": "terminal-centric engineering tasks involving file transformation, sqlite recovery, binary decoding, sanitization, schema migration",
+        "keywords": [
+          "terminal",
+          "sqlite",
+          "schema migration",
+          "decode",
+          "binary",
+          "sanitize",
+          "WAL",
+          "命令行",
+          "迁移",
+          "过滤"
+        ]
+      },
+      {
+        "id": "file_ops",
+        "precision": "16bit",
+        "description": "project bootstrap, repository/file layout planning, creating structures and managing project files",
+        "keywords": [
+          "file ops",
+          "project bootstrap",
+          "folder structure",
+          "README",
+          ".gitignore",
+          "目录结构",
+          "项目初始化"
+        ]
+      },
+      {
+        "id": "workflow",
+        "precision": "16bit",
+        "description": "multi-source workflows spanning email, CRM, calendar, helpdesk, inventory, finance, RSS, and KB with coordination or routing decisions",
+        "keywords": [
+          "workflow",
+          "multi-step",
+          "CRM",
+          "calendar",
+          "helpdesk",
+          "inventory",
+          "RSS",
+          "cross-service",
+          "多步骤",
+          "协调",
+          "路由",
+          "升级"
+        ],
+        "patterns": [
+          "(?=.*(?:email|inbox|邮件|收件箱))(?=.*(?:crm|calendar|日历|contact|联系人|联系方式|rss|finance system|财务系统)).*",
+          "(?=.*(?:email|inbox|邮件|收件箱))(?=.*(?:contact|联系人|联系方式))(?=.*(?:calendar|schedule|安排会议|日程|meeting))(?=.*(?:reply|draft|回复|草稿|通知)).*",
+          "(?=.*(?:meeting notes|会议纪要|action items|行动项))(?=.*(?:to-do|todo|待办)).*(?:report|tracking|跟踪表|进度报告)",
+          "(?=.*(?:complaint|投诉|escalation|升级))(?=.*(?:crm|客户))(?=.*(?:email|邮件|draft|草稿)).*"
+        ]
+      },
+      {
+        "id": "operations",
+        "precision": "16bit",
+        "description": "business operations tasks such as ticket triage, inventory checks, exports, restock actions and operational execution",
+        "keywords": [
+          "operations",
+          "ticket triage",
+          "inventory",
+          "export",
+          "restock",
+          "运营",
+          "库存",
+          "导出",
+          "处理工单"
+        ],
+        "patterns": [
+          "(?=.*(?:export|导出))(?=.*(?:vip customer|VIP客户))(?=.*(?:crm)).*",
+          "(?=.*(?:running low|补货|restock))(?=.*(?:inventory|库存|items)).*",
+          "(?=.*(?:open support tickets))(?=.*(?:categorize|set priorities|tag related))(?!.*(?:crm|knowledge base|SLA)).*",
+          "(?=.*(?:待处理工单))(?=.*(?:分类|优先级|标一下))(?!.*(?:CRM|知识库|SLA)).*"
+        ]
+      },
+      {
+        "id": "safety",
+        "precision": "16bit",
+        "description": "prompt injection defense, credential safety, safe browsing behavior, resisting malicious instructions and secret exfiltration",
+        "keywords": [
+          "safety",
+          "prompt injection",
+          "credential",
+          "API key",
+          "phishing",
+          "安全",
+          "注入",
+          "密钥",
+          "钓鱼"
+        ]
+      },
+      {
+        "id": "compliance",
+        "precision": "16bit",
+        "description": "regulatory and compliance research including AI regulation, legal process, cross-border rules and formal compliance obligations",
+        "keywords": [
+          "compliance",
+          "regulation",
+          "AI Act",
+          "GDPR",
+          "cross-border",
+          "法规",
+          "合规",
+          "监管",
+          "SCC"
+        ]
+      },
+      {
+        "id": "security",
+        "precision": "16bit",
+        "description": "security vulnerabilities, CVE analysis, exploit risk, patching guidance and security review",
+        "keywords": [
+          "security",
+          "CVE",
+          "vulnerability",
+          "Log4j",
+          "patch",
+          "漏洞",
+          "安全漏洞",
+          "修复建议"
+        ]
+      },
+      {
+        "id": "synthesis",
+        "precision": "16bit",
+        "description": "daily briefings, executive summaries, project summaries and cross-source synthesis into polished final outputs",
+        "keywords": [
+          "synthesis",
+          "briefing",
+          "executive summary",
+          "daily summary",
+          "综合总结",
+          "汇总简报",
+          "总结报告"
+        ]
+      },
+      {
+        "id": "standard",
+        "precision": "16bit",
+        "description": "",
+        "keywords": []
+      }
+    ],
+    "defaultTaskType": "standard",
+    "targets": {
+      "4bit": {
+        "provider": "quantclaw-4bit",
+        "model": "glm-4.7-flash-int4-autoround",
+        "displayName": "4-bit Target",
+        "pricing": {}
+      },
+      "8bit": {
+        "provider": "quantclaw-8bit",
+        "model": "glm-4.7-flash",
+        "displayName": "8-bit Target",
+        "pricing": {}
+      },
+      "16bit": {
+        "provider": "quantclaw-16bit",
+        "model": "glm-4.7-flash",
+        "displayName": "16-bit Target",
+        "pricing": {}
+      }
+    },
+    "fallbackPolicy": "escalate",
+    "modelPricing": {
+      "gpt-4o-mini": {
+        "inputPer1M": 0.5,
+        "outputPer1M": 1.5
+      },
+      "gpt-4o": {
+        "inputPer1M": 1,
+        "outputPer1M": 3
+      },
+      "gpt-5.4": {
+        "inputPer1M": 2,
+        "outputPer1M": 6
+      },
+      "claude-sonnet-4-6": {
+        "inputPer1M": 4,
+        "outputPer1M": 15
+      },
+      "claude-opus-4-6": {
+        "inputPer1M": 5,
+        "outputPer1M": 18
+      },
+      "glm-4.7-flash": {
+        "inputPer1M": 0.06,
+        "outputPer1M": 0.4
+      },
+      "glm-4.7-flash-int4-autoround": {
+        "inputPer1M": 0.051,
+        "outputPer1M": 0.34
+      }
+    }
+  }
+}

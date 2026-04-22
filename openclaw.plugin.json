@@ -1,0 +1,176 @@
+{
+  "id": "quantclaw",
+  "name": "QuantClaw",
+  "description": "Task-type based quantization routing plugin for OpenClaw that routes requests across 4bit, 8bit, and 16bit targets to balance cost and accuracy.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "quant": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "detectors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ruleDetector",
+                "loadModelDetector"
+              ]
+            }
+          },
+          "judge": {
+            "type": "object",
+            "properties": {
+              "endpoint": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "providerType": {
+                "type": "string",
+                "enum": [
+                  "openai-compatible",
+                  "ollama-native",
+                  "custom"
+                ]
+              },
+              "apiKey": {
+                "type": "string"
+              },
+              "customModule": {
+                "type": "string"
+              },
+              "cacheTtlMs": {
+                "type": "number"
+              }
+            }
+          },
+          "taskTypes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "precision": {
+                  "type": "string",
+                  "enum": [
+                    "4bit",
+                    "8bit",
+                    "16bit"
+                  ]
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "patterns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "defaultTaskType": {
+            "type": "string"
+          },
+          "targets": {
+            "type": "object",
+            "properties": {
+              "4bit": {
+                "type": "object",
+                "properties": {
+                  "provider": { "type": "string" },
+                  "model": { "type": "string" },
+                  "endpoint": { "type": "string" },
+                  "api": { "type": "string" },
+                  "apiKey": { "type": "string" },
+                  "customModule": { "type": "string" },
+                  "displayName": { "type": "string" },
+                  "pricing": {
+                    "type": "object",
+                    "properties": {
+                      "inputPer1M": { "type": "number" },
+                      "outputPer1M": { "type": "number" }
+                    }
+                  }
+                }
+              },
+              "8bit": {
+                "type": "object",
+                "properties": {
+                  "provider": { "type": "string" },
+                  "model": { "type": "string" },
+                  "endpoint": { "type": "string" },
+                  "api": { "type": "string" },
+                  "apiKey": { "type": "string" },
+                  "customModule": { "type": "string" },
+                  "displayName": { "type": "string" },
+                  "pricing": {
+                    "type": "object",
+                    "properties": {
+                      "inputPer1M": { "type": "number" },
+                      "outputPer1M": { "type": "number" }
+                    }
+                  }
+                }
+              },
+              "16bit": {
+                "type": "object",
+                "properties": {
+                  "provider": { "type": "string" },
+                  "model": { "type": "string" },
+                  "endpoint": { "type": "string" },
+                  "api": { "type": "string" },
+                  "apiKey": { "type": "string" },
+                  "customModule": { "type": "string" },
+                  "displayName": { "type": "string" },
+                  "pricing": {
+                    "type": "object",
+                    "properties": {
+                      "inputPer1M": { "type": "number" },
+                      "outputPer1M": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "fallbackPolicy": {
+            "type": "string",
+            "enum": [
+              "escalate"
+            ]
+          },
+          "modelPricing": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "inputPer1M": {
+                  "type": "number"
+                },
+                "outputPer1M": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
