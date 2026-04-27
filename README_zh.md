@@ -12,7 +12,7 @@
   <p>
     <a href="https://clawhub.ai/plugins/%40sparkengineai%2Fquantclaw"><img src="https://img.shields.io/badge/OpenClaw-%E6%8F%92%E4%BB%B6-0f172a" alt="OpenClaw插件"></a>
     <a href="https://sparkengineai.github.io/QuantClaw/"><img src="https://img.shields.io/badge/Blog-Live-0ea5e9" alt="Blog"></a>
-    <a href="PAPER_URL_PLACEHOLDER"><img src="https://img.shields.io/badge/Paper-Placeholder-f97316" alt="Paper"></a>
+    <a href="https://arxiv.org/abs/2604.22577"><img src="https://img.shields.io/badge/Paper-arXiv-f97316" alt="Paper arXiv"></a>
     <img src="https://img.shields.io/badge/%E8%B7%AF%E7%94%B1-4bit%20%7C%208bit%20%7C%2016bit-2563eb" alt="Routing tiers">
     <img src="https://img.shields.io/badge/License-MIT-16a34a" alt="MIT License">
   </p>
@@ -296,11 +296,10 @@ python router/embedding_task_router_server.py --model-name BAAI/bge-m3 --device 
 如果QuantClaw对你的研究、工程实践有帮助，欢迎引用：
 
 ```bibtex
-@misc{QuantClawBlog,
-    title = {QuantClaw: Precision Where It Matters for OpenClaw},
-    url = {https://sparkengineai.github.io/QuantClaw/},
-    author = {SparkEngineAI Team},
-    month = {April},
-    year = {2026}
+@article{zhang2026quantclaw,
+  title={QuantClaw: Precision Where It Matters for OpenClaw},
+  author={Zhang, Manyi and Li, Ji-Fu and Sun, Zhongao and Liu, Xiaohao and Dong, Zhenghua and Yu, Xianzhi and Bai, Haoli and Xia, Xiaobo},
+  journal={arXiv preprint arXiv:2604.22577},
+  year={2026}
 }
 ```
